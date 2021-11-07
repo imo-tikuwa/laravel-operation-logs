@@ -20,7 +20,6 @@ class CreateOperationLogsTable extends Migration
             $table->string('request_url', 255)->nullable(false)->comment('リクエストURL');
             $table->dateTime('request_time', 6)->nullable(false)->comment('リクエスト日時');
             $table->dateTime('response_time', 6)->nullable(false)->comment('レスポンス日時');
-            $table->timestamps(6);
         });
     }
 

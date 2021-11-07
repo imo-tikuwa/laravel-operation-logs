@@ -2,6 +2,7 @@
 
 namespace ImoTikuwa\OperationLogs\Models;
 
+use DateInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,10 +13,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $client_ip クライアントIP
  * @property string $user_agent ユーザーエージェント
  * @property string $request_url リクエストURL
- * @property string $request_time リクエスト日時
- * @property string $response_time レスポンス日時
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon $request_time リクエスト日時
+ * @property \Illuminate\Support\Carbon $response_time レスポンス日時
+ * @property DateInterval $diff レスポンス日時 - リクエスト日時 の差分
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog query()
@@ -52,4 +52,40 @@ class OperationLog extends Model
      * @var string
      */
     protected $dateFormat = "Y/m/d H:i:s.u";
+
+    /**
+     * Do not use created_at and updated_at.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
+     * Request date and time and response date and time cast settings.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'request_time' => 'datetime:Y-m-d H:i:s.u',
+        'response_time' => 'datetime:Y-m-d H:i:s.u',
+    ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'diff',
+    ];
+
+    /**
+     * Returns the difference between the request date and time and the response date and time.
+     *
+     * @return DateInterval
+     */
+    public function getDiffAttribute()
+    {
+        return $this->request_time->diff($this->response_time);
+    }
 }
