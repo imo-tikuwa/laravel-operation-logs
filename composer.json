@@ -1,0 +1,25 @@
+{
+    "name": "imo-tikuwa/laravel-operation-logs",
+    "description": "laravel-operation-logs",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "laravel/framework": "^8.54"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "ImoTikuwa\\OperationLogs\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ImoTikuwa\\OperationLogs\\Providers\\OperationLogsServiceProvider"
+            ]
+        }
+    }
+}
