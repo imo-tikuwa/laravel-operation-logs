@@ -11,7 +11,7 @@ It provides middleware that records client IP, user agent, request URL, request 
 ```
 
 ## Usage
-Add OperationLog middleware to $middleware or $middlewareGroups in app/Http/Kernel.php
+Add OperationLogs middleware to $middleware or $middlewareGroups in app/Http/Kernel.php
 ```
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
