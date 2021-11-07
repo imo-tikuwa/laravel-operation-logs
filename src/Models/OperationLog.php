@@ -7,25 +7,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\OperationLog
+ * ImoTikuwa\OperationLogs\Models\OperationLog
  *
  * @property int $id
- * @property string $client_ip クライアントIP
- * @property string $user_agent ユーザーエージェント
- * @property string $request_url リクエストURL
- * @property \Illuminate\Support\Carbon $request_time リクエスト日時
- * @property \Illuminate\Support\Carbon $response_time レスポンス日時
- * @property DateInterval $diff レスポンス日時 - リクエスト日時 の差分
+ * @property string $client_ip client ip
+ * @property string $user_agent user agent
+ * @property string $request_url request url
+ * @property \datetime $request_time request time
+ * @property \datetime $response_time response time
+ * @property-read DateInterval $diff
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog query()
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereClientIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereRequestTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereRequestUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereResponseTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OperationLog whereUserAgent($value)
  * @mixin \Eloquent
  */
