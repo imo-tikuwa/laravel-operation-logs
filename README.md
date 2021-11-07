@@ -5,9 +5,9 @@ It provides middleware that records client IP, user agent, request URL, request 
 
 ## Install
 ```
-composer config repositories.imo-tikuwa/laravel-operation-logs vcs https://github.com/imo-tikuwa/laravel-operation-logs
-composer require imo-tikuwa/laravel-operation-logs:dev-master
-php artisan migrate
+# composer config repositories.imo-tikuwa/laravel-operation-logs vcs https://github.com/imo-tikuwa/laravel-operation-logs
+# composer require imo-tikuwa/laravel-operation-logs:dev-master
+# php artisan migrate
 ```
 
 ## Usage
@@ -44,4 +44,35 @@ or
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
+```
+
+## Exclude Setting.
+If you do not want to record access from some IPs, URLs, and user agents, you can set exclusions.
+
+1. Execute the vendor:publish command and copy operation_log.php to the config directory. (Tag: operation-log-config)
+```
+# php artisan vendor:publish
+Which provider or tag's files would you like to publish?:
+  [0 ] Publish files from all providers and tags listed below
+~~~~~~
+  [20] Tag: operation-log-config
+  [21] Tag: sail
+ > 20
+```
+
+2. Edit config/operation_log.php.
+```
+    'exclude_ips' => [
+        '172.30',
+        '172.31.0',
+    ],
+
+    'exclude_user_agents' => [
+        'Chrome',
+        'Edg/',
+    ],
+
+    'exclude_urls' => [
+        '/admin',
+    ],
 ```
